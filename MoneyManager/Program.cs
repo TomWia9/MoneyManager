@@ -1,18 +1,32 @@
 ﻿using System;
+using MoneyManager.Items;
+using MoneyManager.Db;
+using MoneyManager.Statistics;
 
 namespace MoneyManager
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Income income = new Income();
-            income.Id = 1;
-            income.Name = "Pensja";
-            income.Amount = 1500.0M;
-            income.Date = new DateTime(2019,10,14);
+            Income income = new Income
+            {
+                Id = 1,
+                Name = "Pensja",
+                Amount = 1500.0M,
+                Date = new DateTime(2019, 10, 5)
+            };
 
-            Console.WriteLine("{0} {1} {2}zł {3}", income.Id, income.Name, income.Amount, income.Date);
+            Outcome outcome = new Outcome
+            {
+                Id = 1,
+                Name = "Zakupy",
+                Amount = 120.50M,
+                Date = new DateTime(2019, 10, 6)
+            };
+
+            Console.WriteLine("Przychód:\n{0} {1} {2}zł {3}", income.Id, income.Name, income.Amount, income.Date);
+            Console.WriteLine("Wydatek:\n{0} {1} {2}zł {3}", outcome.Id, outcome.Name, outcome.Amount, outcome.Date);
 
             Console.ReadKey();
         }

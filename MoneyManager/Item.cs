@@ -4,12 +4,11 @@ using System.Text;
 
 namespace MoneyManager
 {
-    class Income
+    abstract class Item
     {
         public int Id;
         public string Name;
         public decimal Amount;
         public DateTime Date;
-
     }
 }

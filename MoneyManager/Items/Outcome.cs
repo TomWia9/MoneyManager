@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MoneyManager
+namespace MoneyManager.Items
 {
-    class List
+    class Outcome:Item
     {
+       
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MoneyManager
+namespace MoneyManager.Statistics
 {
-    class Summary
+    class List
     {
     }
 }
