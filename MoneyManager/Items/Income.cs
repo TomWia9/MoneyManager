@@ -6,7 +6,6 @@ namespace MoneyManager.Items
 {
     class Income:Item
     {
-        
-
+        public Income(int id, decimal amount, string name, DateTime date) : base(id, amount, name, date) { }
     }
 }
