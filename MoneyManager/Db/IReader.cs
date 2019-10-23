@@ -7,6 +7,7 @@ namespace MoneyManager.Db
 {
     interface IReader
     {
-        Item Read();
+        IEnumerable<Item> ReadAll();
+        int GetNextId();
     }
 }

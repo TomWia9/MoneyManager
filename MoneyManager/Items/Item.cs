@@ -10,8 +10,7 @@ namespace MoneyManager.Items
         public string Name { get; protected set; }
         public decimal Amount { get; protected set; }
         public DateTime Date { get; protected set; }
-
-        ItemType Type;
+        public ItemType Type { get; protected set; }
 
         public Item(int id, decimal amount, string name, DateTime date)
         {
@@ -19,7 +18,6 @@ namespace MoneyManager.Items
             Amount = amount;
             Name = name;
             Date = date;
-            Type = ItemType.Income;
         }
     }
 }

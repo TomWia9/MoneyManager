@@ -2,21 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 using MoneyManager.Items;
+using MoneyManager.Db;
 
 namespace MoneyManager.Statistics
 {
     class List
     {
-        private Item _item;
+        private IReader _reader;
 
-        public List(Item item)
+        public List(IReader reader)
         {
-            _item = item;
+            _reader = reader;
         }
 
-        public void DisplayLine()
+        public void DisplayList()
         {
-            Console.WriteLine("{0} {1} {2}zł {3}", _item.Id, _item.Name, _item.Amount, _item.Date);
+            IEnumerable<Item> list = _reader.ReadAll();
+
+            foreach (Item item in list)
+            {
+                DisplayLine(item);
+            }
+        }
+
+        private void DisplayLine(Item item)
+        {
+            string type="";
+
+            switch (item.Type)
+            {
+                case ItemType.Income:
+                    type = "DOCHÓD";
+                    break;
+                case ItemType.Outcome:
+                    type = "WYDATEK";
+                    break;
+            }
+
+            Console.WriteLine("{0} {1} {2} {3}zł {4}", item.Id, item.Name, type, item.Amount, item.Date);
         }
     }
 }

@@ -4,8 +4,9 @@ using System.Text;
 
 namespace MoneyManager.Items
 {
-    class Outcome:Item
+    class Outcome : Item
     {
-        public Outcome(int id, decimal amount, string name, DateTime date) : base(id, amount, name, date) { }
+        public Outcome(int id, decimal amount, string name, DateTime date) : base(id, amount, name, date) { Type = ItemType.Outcome; }
+
     }
 }

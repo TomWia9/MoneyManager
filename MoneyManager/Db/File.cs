@@ -1,18 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 using MoneyManager.Items;
 
 namespace MoneyManager.Db
 {
     class File:IReader,IWriter
     {
-        public Item Read()
+        private IList<Item> _list;
+
+        public File()
         {
-           return new Income(1, 1500.0M, "Pensja", new DateTime(2019, 10, 4));
+            _list = new List<Item>();
         }
 
         public void Write(Item item)
         {
-            
+            _list.Add(item);
+        }
+
+        public void Remove(int id)
+        {
+            Item toRemove = null;
+
+            foreach (Item item in _list)
+            {
+                if(item.Id == id)
+                {
+                    toRemove = item;
+                    break;
+                }
+            }
+
+            _list.Remove(toRemove);
+        }
+
+        public IEnumerable<Item> ReadAll()
+        {
+            return _list;
+        }
+
+        public int GetNextId()
+        {
+            if (_list.Count == 0)
+                return 1;
+
+            int lastIndex = _list.Count - 1;
+            return _list[lastIndex].Id + 1;
         }
     }
 }

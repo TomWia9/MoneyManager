@@ -8,5 +8,6 @@ namespace MoneyManager.Db
     interface IWriter
     {
         void Write(Item item);
+        void Remove(int id);
     }
 }
