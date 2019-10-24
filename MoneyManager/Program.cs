@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyManager.Items;
+using MoneyManager.Db.Files;
 using MoneyManager.Db;
 using MoneyManager.Statistics;
 
@@ -7,11 +8,13 @@ namespace MoneyManager
 {
     class Program
     {
-        static File _file;
+        static IReader _reader;
+        static IWriter _writer;
 
         static void Main()
         {
-            _file = new File();
+            _reader = new Reader("database.txt");
+            _writer = new Writer("database.txt");
             string selected;
 
             do
@@ -62,7 +65,7 @@ namespace MoneyManager
             Console.Clear();
             Console.WriteLine("Wszystkie pozycje:");
 
-            List list = new List(_file);
+            List list = new List(_reader);
             list.DisplayList();
            
             Console.ReadKey();
@@ -75,7 +78,7 @@ namespace MoneyManager
             int year = DateTime.Now.Year;
             int month = DateTime.Now.Month;
 
-            Summary report = new Summary(_file);
+            Summary report = new Summary(_reader);
 
             report.DisplayReport(year, month);
             Console.ReadKey();
@@ -97,7 +100,7 @@ namespace MoneyManager
             value = Console.ReadLine();
             DateTime date = DateTime.Parse(value);
 
-            Service service = new Service(_file, _file);
+            Service service = new Service(_reader, _writer);
             service.AddOutcome(amount, name, date);
         }
 
@@ -119,7 +122,7 @@ namespace MoneyManager
             value = Console.ReadLine();
             DateTime date = DateTime.Parse(value);
 
-            Service service = new Service(_file, _file);
+            Service service = new Service(_reader, _writer);
             service.AddIncome(amount, name, date);
         }
 
@@ -131,7 +134,7 @@ namespace MoneyManager
             string value = Console.ReadLine();
             int id = int.Parse(value);
 
-            Service service = new Service(_file, _file);
+            Service service = new Service(_reader, _writer);
             service.RemoveById(id);
         }
     }

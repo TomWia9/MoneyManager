@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MoneyManager.Items;
 
-namespace MoneyManager.Db
+namespace MoneyManager.Db.Files
 {
     class File:IReader,IWriter
     {
